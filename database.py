@@ -5,16 +5,16 @@ def conn():
 
 def create_tables():
     connect = conn()
-    cursor = conn.cursor()
+    cursor = connect.cursor()
     cursor.execute('''
-        CREATE TABLE IF NOT EXIST clients (
+        CREATE TABLE IF NOT EXISTS clients (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,
             email TEXT UNIQUE NOT NULL,
             cpf TEXT UNIQUE NOT NULL,
             password TEXT NOT NULL
     )
-''')
+    ''')
 
-connect.commit()
-connect.close()
+    connect.commit()
+    connect.close()
