@@ -1,0 +1,7 @@
+#ignores the local database
+*.db
+data/
+
+#ignores the temp files of python
+__pycache__/
+*.pyc
