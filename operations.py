@@ -47,3 +47,10 @@ def update_user(old_cpf, new_name, new_email, new_cpf):
 
     connect.commit()
     connect.close()
+
+def delete_user(cpf):
+    connect = conn()
+    cursor = connect.cursor()
+    cursor.execute('DELETE FROM clients WHERE cpf = ?', (cpf,))
+    connect.commit()
+    connect.close()
