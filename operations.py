@@ -22,3 +22,12 @@ def create_user(name,email,cpf,password):
 
     connect.commit()
     connect.close()
+
+def read_users():
+    connect = conn()
+    cursor = connect.cursor()
+
+    cursor.execute('SELECT id, name, email, cpf FROM clients')
+    res = cursor.fetchall()
+    connect.close()
+    return res
