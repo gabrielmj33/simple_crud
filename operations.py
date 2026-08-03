@@ -31,3 +31,19 @@ def read_users():
     res = cursor.fetchall()
     connect.close()
     return res
+
+def update_user(old_cpf, new_name, new_email, new_cpf):
+    connect = conn()
+    cursor = connect.cursor()
+
+    cursor.execute('''
+        UPDATE clients
+        SET 
+        name = ?,
+        email = ?,
+        cpf = ?
+        WHERE cpf = ?
+    ''', (new_name, new_email, new_cpf, old_cpf))
+
+    connect.commit()
+    connect.close()
