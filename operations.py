@@ -54,3 +54,18 @@ def delete_user(cpf):
     cursor.execute('DELETE FROM clients WHERE cpf = ?', (cpf,))
     connect.commit()
     connect.close()
+
+def login(typed_email, typed_password):
+    connect = conn()
+    cursor = connect.cursor()
+    cursor.execute('SELECT password FROM clients WHERE email = ?', (typed_email,))
+    res = cursor.fetchone()
+    connect.close()
+
+    if res is None:
+        return False
+
+    password_hash = res[0].encode('utf-8')
+    password_typed_bytes = typed_password.encode('utf-8')
+
+    return bcrypt.checkpw(password_typed_bytes, password_hash)
