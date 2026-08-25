@@ -22,3 +22,9 @@ def menu():
     if len(password) < 6:
         print("The password need have at least 6 characters.")
         return
+
+    try:
+        create_user(name, email, cpf, password)
+        print("User successfully created!")
+    except Exception as e:
+        print(f"Error when save in the DATABASE (CPF or EMAIL already in use).")
